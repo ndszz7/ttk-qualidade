@@ -2,41 +2,50 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Downloader TikTok HD</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
+      padding: 20px;
       background-color: #000;
       color: #00bfff;
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: flex-start;
+      min-height: 100vh;
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 1.8em;
+      text-align: center;
       margin-bottom: 20px;
       color: #00bfff;
     }
 
     input[type="text"] {
-      width: 80%;
+      width: 100%;
       max-width: 500px;
-      padding: 10px;
+      padding: 12px;
       font-size: 16px;
       border: none;
       border-radius: 8px;
       outline: none;
       background-color: #111;
       color: #00bfff;
+      margin-bottom: 15px;
     }
 
     button {
-      margin-top: 15px;
-      padding: 10px 20px;
+      width: 100%;
+      max-width: 500px;
+      padding: 14px;
       font-size: 18px;
       border: none;
       border-radius: 8px;
@@ -47,7 +56,7 @@
     }
 
     button:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
       background-color: #009acd;
     }
 
@@ -56,16 +65,15 @@
       margin-top: 20px;
       font-size: 18px;
       color: #00ffcc;
-      text-decoration: none;
+      text-decoration: underline;
     }
-
   </style>
 </head>
 <body>
 
   <h1>Baixe vídeos do TikTok em HD</h1>
   <input type="text" id="tiktokUrl" placeholder="Cole o link do vídeo do TikTok aqui" />
-  <button onclick="baixarVideo()">procurar video</button>
+  <button onclick="baixarVideo()">Procurar Vídeo</button>
   <a id="downloadLink" href="#" target="_blank">Clique aqui para baixar</a>
 
   <script>
