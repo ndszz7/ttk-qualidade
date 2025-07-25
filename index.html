@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Downloader TikTok HD</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #00bfff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #00bfff;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      max-width: 500px;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      background-color: #111;
+      color: #00bfff;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #00bfff;
+      color: #000;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background-color: #009acd;
+    }
+
+    a#downloadLink {
+      display: none;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #00ffcc;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Baixe vídeos do TikTok em HD</h1>
+  <input type="text" id="tiktokUrl" placeholder="Cole o link do vídeo do TikTok aqui" />
+  <button onclick="baixarVideo()">procurar video</button>
+  <a id="downloadLink" href="#" target="_blank">Clique aqui para baixar</a>
+
+  <script>
+    async function baixarVideo() {
+      const url = document.getElementById('tiktokUrl').value.trim();
+      if (!url) {
+        alert('Por favor, cole um link do TikTok!');
+        return;
+      }
+
+      const apiUrl = `https://tiktok-max-quality.p.rapidapi.com/download/?url=${encodeURIComponent(url)}`;
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'x-rapidapi-host': 'tiktok-max-quality.p.rapidapi.com',
+            'x-rapidapi-key': '8fe9e635f6mshaecd6f74842f74bp18e307jsn99bbae5a34bd'
+          }
+        });
+
+        const data = await response.json();
+        const downloadUrl = data.download_url || data.off_url;
+
+        if (downloadUrl) {
+          const link = document.getElementById('downloadLink');
+          link.href = downloadUrl;
+          link.style.display = 'block';
+        } else {
+          alert('Não foi possível encontrar o link de download. Verifique se o vídeo está público.');
+        }
+
+      } catch (error) {
+        alert('Erro ao buscar o vídeo. Tente novamente.');
+        console.error(error);
+      }
+    }
+  </script>
+
+</body>
+</html>
